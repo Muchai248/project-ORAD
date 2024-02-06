@@ -16,17 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from database.views import *
+from database import views
 from django.conf.urls.static import static 
 import os
 from django.conf import settings
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('database.urls')),
-    path('users/', RegisterAPIView.as_view(), name='users'),
-    path('login/', login, name="login"),
-    path('logout/', logout, name="logout"),
-    path('register', register_view,name="register"),
+    # path('users/', views.RegisterAPIView.as_view(), name='users'),
+    path('home', TemplateView.as_view(template_name='main.html'), name='home'),
+    path('login/', views.login, name="login"),
+    path('logout/', views.logout, name="logout"),
+    path('register', views.register_view, name="register"),
 ]  + static(settings.MEDIA_URL, document_root=os.path.join(settings.BASE_DIR, 'media'))

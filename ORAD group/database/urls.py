@@ -1,12 +1,10 @@
 # urls.py
-from atexit import register
 import os
-from django import views
 from django.db import router
 from django.urls import include, path
 from rest_framework import routers
-from database.views import *
-# from database.views import  PostViewSet
+from database.views import CustomUserViewSet, register
+from database.views import  PostViewSet
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,11 +25,11 @@ urlpatterns = [
     # path('register', AuthViewSet.as_view({'post': 'register'}), name='register'),   
     path('auth', include('rest_framework.urls', namespace='rest_framework')),
     path('Useradmin', TemplateView.as_view(template_name='Admin.html')),
-    path('home', TemplateView.as_view(template_name='main.html')),
-    path('users/', RegisterAPIView.as_view()),    
+    path('home', TemplateView.as_view(template_name='main.html'), name='home'),
+    # path('users/', RegisterAPIView.as_view()),    
     path ('login'  , TemplateView.as_view(template_name= 'login.html')),
     path('logout', TemplateView.as_view(template_name="logout.html")),
-    path('register', register_view, name='register')
+    path('register', register, name='register')
 
 
     # path('user/profile/', UserProfileView.as_view(), name='user-profile'),
