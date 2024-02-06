@@ -1,41 +1,27 @@
-
-
-from email.policy import default
-from enum import unique
-from hashlib import blake2b
-import profile
-from pyexpat import model
-from xml.dom.minidom import Document
-from django.contrib.auth.models import User
-
-from turtle import mode
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Permission, Group
 from django.utils import timezone
-from sqlalchemy import null
-from django.contrib.auth.models import AbstractUser
-
 
 
 class CustomUser(models.Model):
-    fullname= models.CharField(max_length=50,null=True, blank=True)
-    email= models.CharField(max_length=57)
-    password= models.CharField(max_length=20, null=True )
-    is_active= models.BooleanField(default=False)
-    date_joined=models.DateTimeField(default=timezone.now)
-
+    fullname = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=57)
+    password = models.CharField(max_length=20, null=True)
+    is_active = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=timezone.now)
 
 
 class Post(models.Model):
-    author = models.ForeignKey(CustomUser, on_delete=models.PROTECT, blank=False, null=True)
+    author = models.ForeignKey(
+        CustomUser, on_delete=models.PROTECT, blank=False, null=True
+    )
     text = models.TextField()
     pub_date = models.DateTimeField("date published", auto_now_add=True)
-    document = models.FileField(upload_to='documents/', null=True)
+    document = models.FileField(upload_to="documents/", null=True)
+
 
 # class Post(models.Model):
 #     uploader = models.ForeignKey(CustomUser, on_delete=models.PROTECT, blank=False, null=True)
 #     title = models.CharField(max_length=200)
-
 
 
 # class CustomUser(AbstractBaseUser, PermissionsMixin):
@@ -59,7 +45,7 @@ class Post(models.Model):
 
 #     groups = models.ManyToManyField(
 #         Group,
-#         related_name='custom_user_groups',  
+#         related_name='custom_user_groups',
 #         blank=True,
 #     )
 
@@ -68,8 +54,8 @@ class Post(models.Model):
 
 # class Engineer(models.Model):
 #     user_id = self.model(email)
-#     upload_file = 
-    
+#     upload_file =
+
 # class Document(models.Model):
 #     title = models.CharField(max_length=256)
 #     file = models.FileField(upload_to="documents/")
@@ -79,4 +65,3 @@ class Post(models.Model):
 
 #     def __str__(self):
 #         return self.title
-  
