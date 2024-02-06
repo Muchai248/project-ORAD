@@ -76,7 +76,7 @@
 				<div class="hpanel">
       <div class="panel-body">
     {% block content %}
-                        <form method="POST" action="{% url 'users' %}" id="registerForm">
+                        <form method="POST" action="{% url 'register' %}" id="registerForm">
                           {% csrf_token %}    
                           <div
                           class="form-group">
