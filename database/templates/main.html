@@ -1,0 +1,537 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard V.1 |</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo/logo1.jpeg' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'  %}" />
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+    <!-- main CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static  'css/main.css' %}">
+    <!-- educate icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{%  static 'css/educate-custon-icon.css' %}">
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href="{%  static 'css/morrisjs/jquery.morris.min.css' %}">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/scrollbar/jquery.mCustomScrollbar.min.css' %}">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu-vertical.css' %}">
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.print.min.css' %}">
+    <!-- style CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <style>
+    .main-logo {
+        width: 200px; /* Set the width of the logo */
+        height: auto; /* Maintain aspect ratio */
+        margin: 0 auto; /* Center the logo horizontally */
+        padding:12px;
+        background-color: #000000;
+
+    }
+      .folder {
+        text-align: right; /* Align buttons to the right */
+        right:335px;
+    }
+
+    .button {
+        background-color: #FFFC72; /* Set background color */
+        padding: 10px 20px; /* Set padding */
+        margin: 5px; /* Add margin between buttons */
+        border: none; /* Remove border */
+        border-radius: 5px; /* Add border radius */
+        cursor: pointer; /* Add pointer cursor */
+    }
+
+    .button span {
+        margin-left: 5px; /* Add space between icon and text */
+    
+    }
+    
+    #post-table-body {
+    margin: 0 auto; /* Center the table horizontally */
+}
+    .post-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-table th, .post-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    padding-left: 204px;
+}
+
+.post-table th {
+    background-color: #7FA35C;
+    padding-left: 304px;
+}
+
+.folder {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.button {
+    margin-right: 10px; /* Adjust spacing between buttons */
+    margin-bottom: 10px; /* Adjust vertical spacing between buttons */
+}
+
+/* Media query for screens smaller than 768px (typical tablets and mobiles) */
+@media (max-width: 768px) {
+    .folder {
+        flex-direction: row; /* Arrange buttons vertically */
+        align-items: center; /* Align buttons to the centre */
+        justify-content: center; /*
+    }
+
+    .button {
+        margin-right: 0; /* Remove horizontal margin */
+    }
+    
+}
+@media (min-width: 769px) {
+    .folder {
+        flex-direction: row; /* Arrange buttons horizontally */
+        align-items: center; /* Align buttons to the center */
+        justify-content: center; /* Align buttons horizontally to the center */
+    }
+}
+
+@media screen and (max-width: 600px) {
+  .post-table th, .post-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+}
+}
+
+    
+</style>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header">
+                <a href="index.html"><img class="main-logo" src="{% static 'img/logo/logo1.jpeg' %}" alt="" /></a>
+                <strong><a href="index.html"><img src="{% static 'img/logo/logo1.jpeg' %}" alt="" /></a></strong>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar" style="background-color: #000000; padding: 20px; height: 964px;">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1" style="background-color: #000000; padding: 20px;" >
+                        <li class="active">
+                            <a class="has-arrow" href="#">
+								   <span class="educate-icon educate-home icon-wrap"></span>
+								   <span class="mini-click-non">Home</span>
+							</a>
+                        </li>
+                        <li>
+                            {% comment %} <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a> {% endcomment %}
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="main.html" aria-expanded="false"><span class="educate-icon educate-folder icon-wrap"></span> <span class="mini-click-non">All Files</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a id="myFiles" title="My Filess" href="#"><span class="mini-sub-pro">My Files</span></a></li>
+                                <li><a id="teamfolder" title="Team Folder" href="#"><span class="mini-sub-pro">Q.C</span></a>
+                                       <ul>
+                                           <li><a href="#">Architect</a></li>
+                                            <li><a href="#">Engineer</a></li>
+                                            <li><a href="interior.html">Interior Design</a>
+                                            </li>
+                                            <li><a href="#">Project Manager</a></li>
+                                            <li><a href="#">Quantity Surveyor</a></li>
+                                        </ul>
+                                </li>
+                                {% comment %} <li><a id="myFiles" title="References" href="#"><span class="mini-sub-pro">References</span></a></li> {% endcomment %}
+                                <li><a id="documents" title="Documents" href="#"><span class="mini-sub-pro">Documents</span></a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="{% static 'img/logo/logo.png' %}" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area" style="background-color: #7FA35C; padding: 20px;">
+            <div class="header-top-area" style="background-color: #7FA35C; padding: 20px;">
+                <div class="container-fluid">
+                    <div class="row" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+													<i class="educate-icon educate-nav"></i>
+												</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                            <ul class="nav navbar-nav mai-top-nav">
+                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">Files</a>
+                                                </li>
+                                                <li class="nav-item"><a href="sites.html" class="nav-link">Projects</a>
+                                                </li>
+                                                <li class="nav-item"><a href="#" class="nav-link">Documents</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                                
+                                                <li class="nav-item dropdown">
+                                                   <a href="#" class="nav-link dropdown-toggle" id="accountsDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                     Accounts 
+                                                     {% comment %} <i class="fa fa-caret-down"></i> {% endcomment %}
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="accountsDropdown">
+                                                       <li><a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Signup</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                                     </div>
+                                                </li>
+
+                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu start -->
+            <div class="mobile-menu-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="mobile-menu">
+                                <nav id="dropdown">
+                                    <ul class="mobile-menu-nav">
+                                        <li><a data-toggle="collapse" data-target="#Charts" href="home">Home <span class="admin-project-icon edu-icon edu-down-arrow"></span></a></li>                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">All Files<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                            <ul id="demoevent" class="collapse dropdown-header-top">
+                                                <li><a href="#">My Files</a>
+                                                </li>
+                                                <li><a href="#">Q.C</a>
+                                                 <ul>
+                                           <li><a href="#">Architect</a></li>
+                                            <li><a href="interior.html">Engineer</a></li>
+                                            <li><a href="#">Interior Design</a></li>
+                                            <li><a href="#">Project Manager</a></li>
+                                            <li><a href="#">Quantity Surveyor</a></li>
+                                        </ul>
+                                                </li>
+                                                <li><a href="#">Documents</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                         <li><a href="#" class="dropdown-toggle" id="mobileAccountsDropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
+                                <ul class="sub-menu">
+                                    <li><a href="{% url 'register' %}">Signup</a></li>
+                                    <li><a href="{% url 'login' %}">Login</a></li>
+                                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                                </ul>
+                            </li>
+
+                                    </ul>
+                                    
+                                </nav>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu end -->
+            {% comment %} <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row" >
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list">
+                                {% comment %} <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="breadcome-heading">
+                                            {% comment %} <form role="search" class="sr-input-func">
+                                                <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <a href="#"><i class="fa fa-search"></i></a>
+                                            </form> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        
+      <div class="folder">
+    <button class="button" href="main.html">
+        <div id="one"></div>
+        <span>My Files</span>
+    </button>
+<form method="post" enctype="multipart/form-data" action="/upload-file/" id="uploadForm">
+    {% csrf_token %}
+    <button class="button" id="uploadButton" type="button">
+        <div id="one"></div>
+        <span>Upload</span>
+    </button>
+    <input type="file" name="file" id="fileInput" style="display: none;"> <!-- Hidden file input -->
+</form>
+<a href="sites.html">
+    <button class="button">
+        <div id="one"></div>
+        <span>Projects</span>
+    </button> 
+</a>    
+    <button class="button" href="home">
+        <div id="one"></div>
+        <span>Documents</span>
+    </button>
+    
+</div>
+        {% comment %} <div id="documents-container">Files</div> {% endcomment %}
+     {% comment %} <div style="margin-left: 250px;">
+    <p>favourites</p>
+    <hr class="solid">
+</div>
+<br>
+<div style="margin-left: 250px;">
+    <p>Bookmark</p>
+    <hr class="solid">
+</div> {% endcomment %}
+<br>
+<div id="post-table-body" >
+    <table class="post-table"  >
+        <thead>
+            <tr>
+                <th >Title</th>
+                <th >File</th>
+                <th >Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        
+        </tbody>
+    </table>
+</div>
+
+
+
+<br><br>
+
+
+    </div>
+
+    <div class="text-center login-footer">
+        <p>Copyright © 2024. All rights reserved.</p>
+    </div>
+{% load static %}
+    <!-- jquery
+		============================================ -->
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="{% static 'js/jquery-price-slider.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="{% static 'js/counterup/jquery.counterup.min.js' %}" ></script>
+    <script src="{% static 'js/counterup/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/counterup/counterup-active.js' %}"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/scrollbar/mCustomScrollbar-active.js' %}"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu/metisMenu-active.js' %}"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="{% static 'js/morrisjs/raphael-min.js' %}"></script>
+    <script src="{% static 'js/morrisjs/morris.js' %}"></script>
+    <script src="{% static 'js/morrisjs/morris-active.js' %}"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="{% static 'js/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'js/sparkline/jquery.charts-sparkline.js' %}"></script>
+    <script src="{% static 'js/sparkline/sparkline-active.js' %}"></script>
+    <!-- calendar JS
+		============================================ -->
+    <script src="{% static 'js/calendar/moment.min.js'  %}" ></script>
+    <script src="{%  static 'js/calendar/fullcalendar.min.js'  %}" ></script>
+    <script src="{% static  'js/calendar/fullcalendar-active.js' %}"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="{% static  'js/plugins.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static    'js/main.js' %}"></script>
+    <script>
+    // JavaScript
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the upload button and file input
+    const uploadButton = document.getElementById('uploadButton');
+    const fileInput = document.getElementById('fileInput');
+    
+    // Add click event listener to the upload button
+    uploadButton.addEventListener('click', function() {
+        // Trigger click event on the file input
+        fileInput.click();
+    });
+
+    // Add change event listener to the file input to submit the form when a file is selected
+    fileInput.addEventListener('change', function() {
+        // Submit the form when a file is selected
+        document.getElementById('uploadForm').submit();
+    });
+});
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Fetch posts using fetch or any AJAX library
+    fetch('http://localhost:8000/fetch-documents/')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            renderPosts(data);
+        })
+        
+});
+
+function renderPosts(posts) {
+    const postTableBody = document.getElementById('post-table-body');
+
+    // Clear existing table rows
+    postTableBody.querySelector('tbody').innerHTML = '';
+
+    // Create table rows for each document
+    posts.forEach(post => {
+        const row = document.createElement('tr');
+
+        // Create table cells for document data
+        const titleCell = createTableCell(post.title);
+        const fileCell = createTableCell(`<a href="${post.file}" target="_blank">${post.title}</a>`); // Assuming file is a URL to the document
+        const dateCell = createTableCell(post.uploaded_at);
+
+        // Append cells to the row
+        row.appendChild(titleCell);
+        row.appendChild(fileCell);
+        row.appendChild(dateCell);
+
+        // Append the row to the table body
+        postTableBody.querySelector('tbody').appendChild(row);
+    });
+}
+
+function createTableCell(text) {
+    const cell = document.createElement('td');
+    cell.innerHTML = text;
+    return cell;
+}
+
+
+
+
+
+</script>
+    <!-- tawk chat JS
+		============================================ -->
+
+</body>
+
+</html>

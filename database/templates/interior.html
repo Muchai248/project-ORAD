@@ -1,0 +1,194 @@
+{% load static %}
+<!Doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Dashboard V.1 |</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+		============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <!-- Google Fonts
+		============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <!-- Bootstrap CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'  %}" />
+    <!-- owl.carousel CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.css'  %}">
+    <link rel="stylesheet" href="{% static 'css/owl.transitions.css' %}">
+    <!-- animate CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <!-- normalize CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}">
+    <!-- meanmenu icon CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/meanmenu.min.css' %}">
+    <!-- main CSS
+		============================================ -->
+    {% comment %} <link rel="stylesheet" href="{% static  'css/main.css' %}"> {% endcomment %}
+    <!-- educate icon CSS
+		============================================ -->
+    {% comment %} <link rel="stylesheet" href="{%  static 'css/educate-custon-icon.css' %}"> {% endcomment %}
+    <!-- morrisjs CSS
+		============================================ -->
+    <link rel="stylesheet" href="{%  static 'css/morrisjs/jquery.morris.min.css' %}">
+    <!-- mCustomScrollbar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/scrollbar/jquery.mCustomScrollbar.min.css' %}">
+    <!-- metisMenu CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu/metisMenu-vertical.css' %}">
+    <!-- calendar CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar/fullcalendar.print.min.css' %}">
+    <!-- style CSS
+		============================================ -->
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}"> {% endcomment %}
+    <!-- responsive CSS
+		============================================ -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- modernizr JS
+		============================================ -->
+    <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
+    <style>
+    #pdf {
+      width:85%;
+      heigh:975px;
+      margin:auto;
+    }
+    </style>
+</head>
+
+<body>
+<div class="left-custom-menu-adp-wrap comment-scrollbar" style="background-color: #7FA35C; padding: 20px;">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1" style="background-color: #7FA35C; padding: 20px;">
+                        <li class="active">
+                          <a class="has-arrow" href="home">
+								              <span class="educate-icon educate-home icon-wrap"></span>
+								              <span class="mini-click-non">Home</span>
+							            </a>
+                        </li>
+                        <li>
+                            {% comment %} <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a> {% endcomment %}
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="main.html" aria-expanded="false"><span class="educate-icon educate-folder icon-wrap"></span> <span class="mini-click-non">All Files</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a id="myFiles" title="My Filess" href="#"><span class="mini-sub-pro">My Files</span></a></li>
+                                <li><a id="teamfolder" title="Team Folder" href="#"><span class="mini-sub-pro">Q.C</span></a>
+                                       <ul>
+                                           <li><a href="#">Architect</a></li>
+                                            <li><a href="interior.html">Engineer</a></li>
+                                            <li><a href="#">Interior Design</a></li>
+                                            <li><a href="#">Project Manager</a></li>
+                                            <li><a href="#">Quantity Surveyor</a></li>
+                                        </ul>
+                                </li>
+                                {% comment %} <li><a id="myFiles" title="References" href="#"><span class="mini-sub-pro">References</span></a></li> {% endcomment %}
+                                <li><a id="documents" title="Documents" href="#"><span class="mini-sub-pro">Documents</span></a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+  </div>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+<!-- interior.html -->
+<!-- interior.html -->
+<div style="background-color: #000000; padding: 20px; margin: 0 auto;">
+    <div id="pdf-container" style="max-width: 800px; margin: 0 auto;">
+        <iframe src="{% url 'serve_pdf' filename='FLOOR_FINISH_QC_CHECKLIST.pdf' %}" type="application/pdf" width="100%" height="800px" style="margin-bottom: 20px;"></iframe>
+        <a href="{% url 'serve_pdf' filename='FLOOR_FINISH_QC_CHECKLIST.pdf' %}" download="RC_FLOOR_SLAB_QC.pdf" class="btn btn-primary">Save</a>
+
+        <!-- Embed other PDF files similarly -->
+        <br>
+        <embed src="{% url 'serve_pdf' filename='BRICK_Work_QC.pdf' %}" type="application/pdf" width="100%" height="800px" style="margin-bottom: 20px;"/>
+        <a href="{% url 'serve_pdf' filename='BRICK_Work_QC.pdf' %}" download="BRICK_Work_QC.pdf" class="btn btn-primary">Save</a>
+
+        <embed src="{% url 'serve_pdf' filename='ELECTRICAL_QC _CHECKLIST.pdf' %}" type="application/pdf" width="100%" height="800px" style="margin-bottom: 20px;" />
+        <a href="{% url 'serve_pdf' filename='ELECTRICAL_QC _CHECKLIST.pdf' %}" download="ELECTRICAL_QC _CHECKLIST.pdf" class="btn btn-primary">Save</a>
+    </div>
+
+    <!-- Add form for clients to fill PDF -->
+    <form action="/save-filled-pdf/" method="post" style="max-width: 800px; margin: 20px auto;">
+        {% csrf_token %}
+        <label for="filled-pdf">Filled PDF Form:</label>
+        <input type="file" id="filled-pdf" name="filled-pdf">
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+
+    {% load static %}
+    <!-- jquery
+		============================================ -->
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.' %}js"></script>
+    <!-- bootstrap JS
+		============================================ -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- wow JS
+		============================================ -->
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <!-- price-slider JS
+		============================================ -->
+    <script src="{% static 'js/jquery-price-slider.js' %}"></script>
+    <!-- meanmenu JS
+		============================================ -->
+    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
+    <!-- owl.carousel JS
+		============================================ -->
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <!-- sticky JS
+		============================================ -->
+    <script src="{% static 'js/jquery.sticky.js' %}"></script>
+    <!-- scrollUp JS
+		============================================ -->
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <!-- mCustomScrollbar JS
+		============================================ -->
+    <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script src="{% static 'js/scrollbar/mCustomScrollbar-active.js' %}"></script>
+    <!-- counterup JS
+		============================================ -->
+    <script src="{% static 'js/counterup/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/counterup/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/counterup/counterup-active.js' %}"></script>
+    <!-- metisMenu JS
+		============================================ -->
+    <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu/metisMenu-active.js' %}"></script>
+    <!-- morrisjs JS
+		============================================ -->
+    <script src="{% static 'js/sparkline/jquery.sparkline.min.js' %}"></script>
+    <script src="{% static 'js/sparkline/jquery.charts-sparkline.js' %}"></script>
+     <!-- calendar JS
+		============================================ -->
+    <script src="{% static 'js/calendar/moment.min.js'  %}" ></script>
+    <script src="{%  static 'js/calendar/fullcalendar.min.js'  %}" ></script>
+    <script src="{% static  'js/calendar/fullcalendar-active.js' %}"></script>
+    <!-- plugins JS
+		============================================ -->
+    <script src="{% static  'js/plugins.js' %}"></script>
+    <!-- main JS
+		============================================ -->
+    <script src="{% static    'js/main.js' %}"></script>
+    
+</body>
+
+</html>
