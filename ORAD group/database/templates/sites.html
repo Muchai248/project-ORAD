@@ -427,15 +427,15 @@
                       </div>
                       <div class="folder-name dropdown col-md-8" id="{{ folder.file_type }}">
                          <!-- Dropdown content (table) -->
-                         <button class="btn btn-secondary" onclick="toggleFiles('{{folder.file_type}}')" id="{{folder.file_type}}">{{ folder.file_type}}</button>
+                         <button class="btn btn-secondary" onclick="toggleFiles('{{folder.file_type}}', '{{site.pk}}')" id="{{folder.file_type}}">{{ folder.file_type}}</button>
                          <div class="filesDiv card" id="filesDiv" style="overflow-y: scroll;" >
                           <div class="card-header">
                             <p id="file-header">Reports</p>
                           </div>
                           <div class="card-body">
                             <ul>
-                             {% for name in documents_name %} 
-                             <li style="font-size: 8px;" class="col"> <i class="fa-folder-open-o"></i> {{ name }}</li>
+                             {% for file in files %} 
+                             <li style="font-size: 8px;" class="col"> <i class="fa-folder-open-o"></i> {{ file }}</li>
                              <hr>
                              {% endfor %}
                             </ul>
@@ -467,9 +467,9 @@ function toggleFilePopup() {
   const popup = document.getElementById('filespopup');
   popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
 }
-function toggleFiles(file_type) {
+function toggleFiles(file_type, documents, site_id) {
   const filesDiv = document.getElementById('filesDiv');
-  
+  console.log(documents, site_id)
   // Get the paragraph element by its id
   var header = document.getElementById('file-header');
 
@@ -477,6 +477,9 @@ function toggleFiles(file_type) {
   header.textContent = file_type
   // Toggle the display property of the div
   filesDiv.style.display = filesDiv.style.display === 'flex' ? 'none' : 'flex';
+
+  
+
 }
 </script>
 

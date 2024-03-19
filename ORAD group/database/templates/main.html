@@ -62,476 +62,292 @@
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <!-- modernizr JS
 		============================================ -->
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+    rel="stylesheet"
+    />
     <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
     <style>
-    .main-logo {
-        width: 200px; /* Set the width of the logo */
-        height: auto; /* Maintain aspect ratio */
-        margin: 0 auto; /* Center the logo horizontally */
-        padding:12px;
-        background-color: #000000;
-
-    }
-      .folder {
-        text-align: right; /* Align buttons to the right */
-        right:335px;
-    }
-
-    .button {
-        background-color: #FFFC72; /* Set background color */
-        padding: 10px 20px; /* Set padding */
-        margin: 5px; /* Add margin between buttons */
-        border: none; /* Remove border */
-        border-radius: 5px; /* Add border radius */
-        cursor: pointer; /* Add pointer cursor */
+     
+     .sidebar {
+      position: relative;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      /* padding: 58px 0 0; Height of navbar */
+      box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+      background-color: red;
+      height: 100vh;
     }
 
-    .button span {
-        margin-left: 5px; /* Add space between icon and text */
-    
+    .card{
+        text-align: center;
+        background-image: url('https://t4.ftcdn.net/jpg/02/47/06/57/360_F_247065780_kZjmEZP3H0Ij0PqyT7Es5Is6XpMbJSJu.jpg');
+        background-position: top;
+        background-size: cover;
+        height: 35vh;
     }
-    
-    #post-table-body {
-    margin: 0 auto; /* Center the table horizontally */
-}
-    .post-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.post-table th, .post-table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    padding-left: 204px;
-}
-
-.post-table th {
-    background-color: #7FA35C;
-    padding-left: 304px;
-}
-
-.folder {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-}
-
-.button {
-    margin-right: 10px; /* Adjust spacing between buttons */
-    margin-bottom: 10px; /* Adjust vertical spacing between buttons */
-}
-
-/* Media query for screens smaller than 768px (typical tablets and mobiles) */
-@media (max-width: 768px) {
-    .folder {
-        flex-direction: row; /* Arrange buttons vertically */
-        align-items: center; /* Align buttons to the centre */
-        justify-content: center; /*
+    .logo img {
+        height: 15vh;
+    }
+    .folders{
+        display: flex;
+        justify-content: center;
     }
 
-    .button {
-        margin-right: 0; /* Remove horizontal margin */
-    }
-    
-}
-@media (min-width: 769px) {
-    .folder {
-        flex-direction: row; /* Arrange buttons horizontally */
-        align-items: center; /* Align buttons to the center */
-        justify-content: center; /* Align buttons horizontally to the center */
-    }
+    .navbar {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  height: 50px;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 600px) {
-  .post-table th, .post-table td {
-    border: 1px solid #dddddd;
-    padding: 8px;
-    text-align: center;
-}
+.navbar img {
+  height: 16px;
+  width: auto;
+  justify-self: start;
+  margin-left: 20px;
 }
 
-    
+.navbar ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  justify-self: end;
+  
+}
+
+.nav-item a {
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
+
+.nav-item a:hover {
+  color: #3498db;
+}
+.page-wrapper {
+  width: 100%;
+  height: auto;
+}
+
+
+.grad-bar {
+  width: 100%;
+  height: 25px;
+  background: linear-gradient(-45deg, #EE7752,rgb(233,191,16), #23A6D5, rgb(152,191,50));
+  background-size: 400% 400%;
+  	-webkit-animation: gradbar 15s ease infinite;
+	-moz-animation: gradbar 15s ease infinite;
+	animation: gradbar 15s ease infinite;
+}
+
+@keyframes gradbar {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+    }
+    .dropdown {
+  position: relative;
+  display: inline-block;
+  border: none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+ /* CSS for popup div */
+ .popup {
+      display: none; /* Hide the popup by default */
+      position: fixed; /* Position the popup relative to the viewport */
+      top: 50%; /* Position it 50% down from the top */
+      left: 50%; /* Position it 50% across from the left */
+      transform: translate(-50%, -50%); /* Center the popup horizontally and vertically */
+      width: 300px; /* Adjust popup width */
+      height: 200px; /* Adjust popup height */
+      background-color: #f0f0f0; /* Popup background color */
+      border: 1px solid #ccc; /* Optional: Add border for visualization */
+      padding: 20px; /* Add padding */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+      z-index: 9999; /* Ensure popup appears above other content */
+    }
+    /* CSS for overlay (to darken the background when popup is open) */
+    .overlay {
+      display: none; /* Hide the overlay by default */
+      position: fixed; /* Position the overlay relative to the viewport */
+      top: 0; /* Position it at the top */
+      left: 0; /* Position it at the left */
+      width: 100%; /* Cover the entire width of the viewport */
+      height: 100%; /* Cover the entire height of the viewport */
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+      z-index: 9998; /* Ensure overlay appears beneath popup */
+    }
+    /* CSS to style the close button */
+    .close {
+      position: absolute; /* Position the close button */
+      top: 10px; /* Adjust top position */
+      right: 10px; /* Adjust right position */
+      cursor: pointer; /* Add cursor pointer */
+    }
+
 </style>
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-    <!-- Start Left menu area -->
-
-    <div class="left-sidebar-pro">
-        <nav id="sidebar" class="">
-            <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="{% static 'img/logo/logo1.jpeg' %}" alt="" /></a>
-                <strong><a href="index.html"><img src="{% static 'img/logo/logo1.jpeg' %}" alt="" /></a></strong>
+ <div class="">
+     <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-black col-md-3">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <div class="logo" style="display: flex; justify-content: center;" >
+            <img src="/static/img/logo/logo1.jpeg"  />
+        </div>
+        <a
+          href="#"
+          class="list-group-item list-group-item-action py-2 ripple mt-4 active"
+          aria-current="true"
+        >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+        </a>
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple  mt-4">
+          <i class="fas fa-home fa-fw me-3"></i><span>Home</span>
+        </a>
+        <div class="dropdown">
+            <a href="#" class="list-group-item dropdown list-group-item-action py-2 ripple mt-4"
+              ><i class="fas fa-file fa-fw me-3"></i><span>All Files</span></a
+            >
+            <div class="dropdown-content">
+                    
+                <ul>
+                <li><a href="#"  class="list-group-item list-group-item-action py-2 ripple" style="border: none;" >Architect</a></li>
+                <li><a href="interior.html"  class="list-group-item list-group-item-action py-2 ripple" style="border: none;" >Engineer</a></li>
+                <li><a href="#"  class="list-group-item list-group-item-action py-2 ripple" style="border: none;" >Interior Design</a></li>
+                <li><a href="#"  class="list-group-item list-group-item-action py-2 ripple" style="border: none;" >Project Manager</a></li>
+                <li><a href="#"  class="list-group-item list-group-item-action py-2 ripple" style="border: none;">Quantity Surveyor</a></li>
+                </ul>
             </div>
-            <div class="left-custom-menu-adp-wrap comment-scrollbar" style="background-color: #000000; padding: 20px; height: 964px;">
-                <nav class="sidebar-nav left-sidebar-menu-pro">
-                    <ul class="metismenu" id="menu1" style="background-color: #000000; padding: 20px;" >
-                        <li class="active">
-                            <a class="has-arrow" href="#">
-								   <span class="educate-icon educate-home icon-wrap"></span>
-								   <span class="mini-click-non">Home</span>
-							</a>
-                        </li>
-                        <li>
-                            {% comment %} <a title="Landing Page" href="events.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Event</span></a> {% endcomment %}
-                        </li>
-                        <li>
-                            <a class="has-arrow" href="main.html" aria-expanded="false"><span class="educate-icon educate-folder icon-wrap"></span> <span class="mini-click-non">All Files</span></a>
-                            <ul class="submenu-angle" aria-expanded="false">
-                                <li><a id="myFiles" title="My Filess" href="#"><span class="mini-sub-pro">My Files</span></a></li>
-                                <li><a id="teamfolder" title="Team Folder" href="#"><span class="mini-sub-pro">Q.C</span></a>
-                                       <ul>
-                                           <li><a href="#">Architect</a></li>
-                                            <li><a href="#">Engineer</a></li>
-                                            <li><a href="interior.html">Interior Design</a>
-                                            </li>
-                                            <li><a href="#">Project Manager</a></li>
-                                            <li><a href="#">Quantity Surveyor</a></li>
-                                        </ul>
-                                </li>
-                                {% comment %} <li><a id="myFiles" title="References" href="#"><span class="mini-sub-pro">References</span></a></li> {% endcomment %}
-                                <li><a id="documents" title="Documents" href="#"><span class="mini-sub-pro">Documents</span></a></li>
-                            </ul>
-                        </li>
+          </div>
+        
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+  <div class="container-fluid">
+    <div class="nav-wrapper">
+        <div class="grad-bar"></div>
+        <nav class="navbar">
+          
+          <ul class="nav no-search">
+            <li class="nav-item"><a href="#">Home</a></li>
+            <li class="nav-item"><a href="{% url 'sites' %}">Site</a></li>
+            <li class="nav-item"><a href="#">Documents</a></li>
+            <select name="cars" class="btn btn-primary btn-sm" id="cars">
+              <option value="volvo"  disabled selected hidden ><small>Account</small></option>
+              <option class="list-group-item list-group-item-action ripple" value="saab" ><a href="{%  url 'login' %}">Login</a></option>
+              <option class="list-group-item list-group-item-action" value="mercedes" href="{% url 'logout' %}">Logout</option>
+            </select>
 
-                    </ul>
-                </nav>
-            </div>
+          </ul>
         </nav>
-    </div>
-    <!-- End Left menu area -->
-    <!-- Start Welcome area -->
-    <div class="all-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="logo-pro">
-                        <a href="index.html"><img class="main-logo" src="{% static 'img/logo/logo.png' %}" alt="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="header-advance-area" style="background-color: #7FA35C; padding: 20px;">
-            <div class="header-top-area" style="background-color: #7FA35C; padding: 20px;">
-                <div class="container-fluid">
-                    <div class="row" >
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="header-top-wraper">
-                                <div class="row">
-                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
-                                        <div class="menu-switcher-pro">
-                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
-													<i class="educate-icon educate-nav"></i>
-												</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Files</a>
-                                                </li>
-                                                <li class="nav-item"><a href="sites.html" class="nav-link">Projects</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Documents</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                        <div class="header-right-info">
-                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                
-                                                <li class="nav-item dropdown">
-                                                   <a href="#" class="nav-link dropdown-toggle" id="accountsDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                                     Accounts 
-                                                     {% comment %} <i class="fa fa-caret-down"></i> {% endcomment %}
-                                                    </a>
-                                                    <div class="dropdown-menu" aria-labelledby="accountsDropdown">
-                                                       <li><a class="dropdown-item" href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Signup</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
-                                                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                                                     </div>
-                                                </li>
-
-                                                
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul class="mobile-menu-nav">
-                                        <li><a data-toggle="collapse" data-target="#Charts" href="home">Home <span class="admin-project-icon edu-icon edu-down-arrow"></span></a></li>                                        <li><a data-toggle="collapse" data-target="#demoevent" href="#">All Files<span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="demoevent" class="collapse dropdown-header-top">
-                                                <li><a href="#">My Files</a>
-                                                </li>
-                                                <li><a href="#">Q.C</a>
-                                                 <ul>
-                                           <li><a href="#">Architect</a></li>
-                                            <li><a href="interior.html">Engineer</a></li>
-                                            <li><a href="#">Interior Design</a></li>
-                                            <li><a href="#">Project Manager</a></li>
-                                            <li><a href="#">Quantity Surveyor</a></li>
-                                        </ul>
-                                                </li>
-                                                <li><a href="#">Documents</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                         <li><a href="#" class="dropdown-toggle" id="mobileAccountsDropdown" role="button" aria-haspopup="true" aria-expanded="false">Accounts <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                <ul class="sub-menu">
-                                    <li><a href="{% url 'register' %}">Signup</a></li>
-                                    <li><a href="{% url 'login' %}">Login</a></li>
-                                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                                </ul>
-                            </li>
-
-                                    </ul>
-                                    
-                                </nav>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Mobile Menu end -->
-            {% comment %} <div class="breadcome-area">
-                <div class="container-fluid">
-                    <div class="row" >
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="breadcome-list">
-                                {% comment %} <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="breadcome-heading">
-                                            {% comment %} <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form> {% endcomment %}
-                                        </div>
-                                    </div>
-                                    
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> 
         </div>
         
-      <div class="folder">
-    <button class="button" href="main.html">
-        <div id="one"></div>
-        <span>My Files</span>
-    </button>
-<form method="post" enctype="multipart/form-data" action="/upload-file/" id="uploadForm">
-    {% csrf_token %}
-    <button class="button" id="uploadButton" type="button">
-        <div id="one"></div>
-        <span>Upload</span>
-    </button>
-    <input type="file" name="file" id="fileInput" style="display: none;"> <!-- Hidden file input -->
-</form>
-<a href="sites.html">
-    <button class="button">
-        <div id="one"></div>
-        <span>Projects</span>
-    </button> 
-</a>    
-    <button class="button" href="home">
-        <div id="one"></div>
-        <span>Documents</span>
-    </button>
-    
-</div>
-        {% comment %} <div id="documents-container">Files</div> {% endcomment %}
-     {% comment %} <div style="margin-left: 250px;">
-    <p>favourites</p>
-    <hr class="solid">
-</div>
-<br>
-<div style="margin-left: 250px;">
-    <p>Bookmark</p>
-    <hr class="solid">
-</div> {% endcomment %}
-<br>
-<div id="post-table-body" >
-    <table class="post-table"  >
-        <thead>
-            <tr>
-                <th >Title</th>
-                <th >File</th>
-                <th >Date</th>
-            </tr>
-        </thead>
-        <tbody>
+      <div class="row folders" style="margin-top: 0vh;">
+        <div class="card col-md-3 m-2 ml-2" id="Reports" onclick="togglePopup(this.id)">
+            <div class="card-body">
+              <h5 class="card-title">Reports</h5>
+            </div>
+          </div>
+          <div class="card col-md-3 m-2" id="Quality Control" onclick="togglePopup(this.id)">
+            <div class="card-body">
+              <h5 class="card-title">Quality Control</h5>
+            </div>
+          </div>
+          <div class="card col-md-3 m-2" id="Invoices" onclick="togglePopup(this.id)">
+            <div class="card-body">
+              <h5 class="card-title">Invoices</h5>
+            </div>
+          </div>
+      </div>
+      <div class="row folders" style="margin-top: 10vh;">
+        <div class="card col-md-3 m-2 ml-2" id="Images" onclick="togglePopup(this.id)">
+            <div class="card-body">
+              <h5 class="card-title">Images</h5>
+            </div>
+          </div>
+          <div class="card col-md-3 m-2" id="Inventory" onclick="togglePopup(this.id)" >
+            <div class="card-body">
+              <h5 class="card-title">Inventory</h5>
+            </div>
+          </div>
+          <div class="card col-md-3 m-2" id="Others" onclick="togglePopup(this.id)">
+            <div class="card-body">
+              <h5 class="card-title">Others</h5>
+            </div>
+          </div>
+      </div>
+            <!-- Popup Div -->
+        <div id="popup" class="popup">
+            <span class="close" onclick="togglePopup()">&times;</span> <!-- Close button -->
+            <h2 id="file-header">Reports</h2>
+            <hr>
+        </div>
         
-        </tbody>
-    </table>
+        <!-- Overlay Div -->
+        <div id="overlay" class="overlay"></div>
+  
+        <!-- Copyright -->
 </div>
-
-
-
-<br><br>
-
-
+  </footer>
     </div>
-
-    <div class="text-center login-footer">
-        <p>Copyright © 2024. All rights reserved.</p>
-    </div>
-{% load static %}
-    <!-- jquery
-		============================================ -->
-    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
-    <!-- bootstrap JS
-		============================================ -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- wow JS
-		============================================ -->
-    <script src="{% static 'js/wow.min.js' %}"></script>
-    <!-- price-slider JS
-		============================================ -->
-    <script src="{% static 'js/jquery-price-slider.js' %}"></script>
-    <!-- meanmenu JS
-		============================================ -->
-    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
-    <!-- owl.carousel JS
-		============================================ -->
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- sticky JS
-		============================================ -->
-    <script src="{% static 'js/jquery.sticky.js' %}"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
-    <!-- counterup JS
-		============================================ -->
-    <script src="{% static 'js/counterup/jquery.counterup.min.js' %}" ></script>
-    <script src="{% static 'js/counterup/waypoints.min.js' %}"></script>
-    <script src="{% static 'js/counterup/counterup-active.js' %}"></script>
-    <!-- mCustomScrollbar JS
-		============================================ -->
-    <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/scrollbar/mCustomScrollbar-active.js' %}"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
-    <script src="{% static 'js/metisMenu/metisMenu-active.js' %}"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="{% static 'js/morrisjs/raphael-min.js' %}"></script>
-    <script src="{% static 'js/morrisjs/morris.js' %}"></script>
-    <script src="{% static 'js/morrisjs/morris-active.js' %}"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="{% static 'js/sparkline/jquery.sparkline.min.js' %}"></script>
-    <script src="{% static 'js/sparkline/jquery.charts-sparkline.js' %}"></script>
-    <script src="{% static 'js/sparkline/sparkline-active.js' %}"></script>
-    <!-- calendar JS
-		============================================ -->
-    <script src="{% static 'js/calendar/moment.min.js'  %}" ></script>
-    <script src="{%  static 'js/calendar/fullcalendar.min.js'  %}" ></script>
-    <script src="{% static  'js/calendar/fullcalendar-active.js' %}"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="{% static  'js/plugins.js' %}"></script>
-    <!-- main JS
-		============================================ -->
-    <script src="{% static    'js/main.js' %}"></script>
-    <script>
-    // JavaScript
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Get the upload button and file input
-    const uploadButton = document.getElementById('uploadButton');
-    const fileInput = document.getElementById('fileInput');
-    
-    // Add click event listener to the upload button
-    uploadButton.addEventListener('click', function() {
-        // Trigger click event on the file input
-        fileInput.click();
-    });
-
-    // Add change event listener to the file input to submit the form when a file is selected
-    fileInput.addEventListener('change', function() {
-        // Submit the form when a file is selected
-        document.getElementById('uploadForm').submit();
-    });
-});
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch posts using fetch or any AJAX library
-    fetch('http://localhost:8000/fetch-documents/')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            renderPosts(data);
-        })
-        
-});
-
-function renderPosts(posts) {
-    const postTableBody = document.getElementById('post-table-body');
-
-    // Clear existing table rows
-    postTableBody.querySelector('tbody').innerHTML = '';
-
-    // Create table rows for each document
-    posts.forEach(post => {
-        const row = document.createElement('tr');
-
-        // Create table cells for document data
-        const titleCell = createTableCell(post.title);
-        const fileCell = createTableCell(`<a href="${post.file}" target="_blank">${post.title}</a>`); // Assuming file is a URL to the document
-        const dateCell = createTableCell(post.uploaded_at);
-
-        // Append cells to the row
-        row.appendChild(titleCell);
-        row.appendChild(fileCell);
-        row.appendChild(dateCell);
-
-        // Append the row to the table body
-        postTableBody.querySelector('tbody').appendChild(row);
-    });
-}
-
-function createTableCell(text) {
-    const cell = document.createElement('td');
-    cell.innerHTML = text;
-    return cell;
-}
-
-
-
-
-
-</script>
-    <!-- tawk chat JS
-		============================================ -->
-
 </body>
-
+<script>
+    function togglePopup(buttonId) {
+    
+    var header = document.getElementById('file-header');
+    
+    // Set the new value
+    header.textContent = buttonId
+        
+    var popup = document.getElementById("popup");
+    var overlay = document.getElementById("overlay");
+    if (popup.style.display === "none") {
+      popup.style.display = "block";
+      overlay.style.display = "block";
+    } else {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+    }
+  }
+</script>
 </html>

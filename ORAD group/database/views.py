@@ -27,7 +27,7 @@ from django.views.generic import TemplateView
 from .models import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404
-
+import json
 
 def register(request):
     if request.method == 'POST':
@@ -180,15 +180,21 @@ class SiteView(TemplateView):
 
     def get(self,request):
         documents_name = [] 
+        files = []
         sites = Site.objects.all()
         # Get all documents in db 
         # Create folders by filtering distinct file types
         documents = Document.objects.all()
         folders = documents.values('file_type').distinct()
         for document in documents:
-            documents_name.append(document.file.name.split('/')[1])
-        
-        return render(request, self.template_name, {"sites": sites, "folders":folders, "documents_name":documents_name})
+            file = {
+                "file_type" : document.file_type,
+                "file": document.file,
+                "file_name": document.file.name.split('/')[1]
+            }
+            files.append(file)
+
+        return render(request, self.template_name, {"sites": sites, "folders":folders,"files": files})
 
     def post(self, request):
         
@@ -198,8 +204,8 @@ class SiteView(TemplateView):
             site.save()
             messages.success(request, 'Site succesfully cleared.')
 
-        
         elif 'file' in request.FILES:
+            import ipdb;ipdb.set_trace()    
             file_type = request.POST.get("fileType")
             site_id = request.POST.get("site_id")
             files = request.FILES.get("file")
@@ -210,7 +216,7 @@ class SiteView(TemplateView):
             
             document.save()
     
-        return redirect('database:sites')
+        return redirect('sites')
 
 
 class PostViewSet(viewsets.ModelViewSet):
