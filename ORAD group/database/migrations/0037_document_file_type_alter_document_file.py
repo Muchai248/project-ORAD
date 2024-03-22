@@ -10,15 +10,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='document',
-            name='file_type',
-            field=models.CharField(choices=[('REPORT', 'Report'), ('Invoice', 'invoice'), ('PDQ', 'Pdq'), ('IMAGES', 'Images'), ('OTHERS', 'Others')], default='Report', max_length=20),
-            preserve_default=False,
-        ),
-        migrations.AlterField(
-            model_name='document',
-            name='file',
-            field=models.FileField(null=True, upload_to='documents'),
-        ),
+        # migrations.AddField(
+        #     model_name='document',
+        #     name='file_type',
+        #     field=models.CharField(choices=[('REPORT', 'Report'), ('Invoice', 'invoice'), ('PDQ', 'Pdq'), ('IMAGES', 'Images'), ('OTHERS', 'Others')], default='Report', max_length=20),
+        #     preserve_default=False,
+        # ),
+        # migrations.AlterField(
+        #     model_name='document',
+        #     name='file',
+        #     field=models.FileField(null=True, upload_to='documents'),
+        # ),
     ]

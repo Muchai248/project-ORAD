@@ -12,20 +12,20 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='document',
-            name='title',
-        ),
-        migrations.AddField(
-            model_name='document',
-            name='site',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='database.site'),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='document',
-            name='uploaded_by',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
-            preserve_default=False,
-        ),
+        # migrations.RemoveField(
+        #     model_name='document',
+        #     name='title',
+        # ),
+        # migrations.AddField(
+        #     model_name='document',
+        #     name='site',
+        #     field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='database.site'),
+        #     preserve_default=False,
+        # ),
+        # migrations.AddField(
+        #     model_name='document',
+        #     name='uploaded_by',
+        #     field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+        #     preserve_default=False,
+        # ),
     ]
