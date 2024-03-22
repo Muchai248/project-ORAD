@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-
+import os 
 
 
 
@@ -47,52 +47,33 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.email
 
 
-# class UserManager(BaseUserManager):
+def dynamic_upload_to(instance, directory):
+    # Customize the upload directory dynamically
+    return os.path.join('site', str(instance.site.id), directory)    
 
-#     def create_user(self, email, password, **extra_fields):
-#         if not email:
-#             raise ValueError('Email for user must be set.')
-#         email = self.normalize_email(email)
-#         user = self.model(email=email, **extra_fields)
-#         user.set_password(password)
-#         user.save()
-#         return user
-#     def create_superuser(self,email,password):
-#         user = self.create_user(email=email, password=password, is_staff=True,is_superuser=True)
-#         user.is_admin = True
-#         user.is_active = True
-#         user.is_superuser = True
-#         user.save(using=self._db)
-#         return user
-
-
-
-# class CustomUser(AbstractBaseUser, PermissionsMixin):
-#     fullname = models.CharField(max_length=50, null=True, blank=True)
-#     email = models.CharField(max_length=57, unique=True)
-#     password = models.CharField(max_length=20, null=True)
-#     is_active = models.BooleanField(default=False)
-#     is_admin = models.BooleanField(default=False)
-#     is_staff = models.BooleanField(default=False)
-#     is_superuser = models.BooleanField(default=False)
-#     date_joined = models.DateTimeField(default=timezone.now)
-
-#     USERNAME_FIELD = 'email'
-#     objects = UserManager()
-    
-
-
-
-class Document(models.Model):
-    title = models.CharField(max_length=100)
-    file = models.FileField(upload_to="documents/", null=True)
-    uploaded_at = models.DateTimeField(auto_now_add=True)
 
 class Site(models.Model):
     name = models.CharField(max_length=300)
 
     def __str__(self):
         return self.name
+
+class Document(models.Model):
+
+    file_type = [
+        ("REPORT", 'Report'),
+        ("Invoice", 'invoice'),
+        ("PDQ", 'Pdq'),
+        ("IMAGES", "Images"),
+        ("OTHERS", "Others")
+    ]
+
+    site = models.ForeignKey(Site, on_delete=models.CASCADE)
+    file = models.FileField(upload_to="documents", null=True)
+    file_type = models.CharField(max_length=20, choices=file_type)
+    uploaded_by = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
 
 class QCDocument(models.Model):
     site = models.ForeignKey(Site, on_delete=models.CASCADE)

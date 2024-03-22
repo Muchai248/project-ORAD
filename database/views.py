@@ -23,7 +23,11 @@ from django.conf import settings
 from django.http import JsonResponse, HttpResponseNotFound, FileResponse
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_protect
-
+from django.views.generic import TemplateView
+from .models import *
+from django.contrib import messages
+from django.shortcuts import get_object_or_404
+import json
 
 def register(request):
     if request.method == 'POST':
@@ -136,16 +140,6 @@ def qc_document(request):
         # Return the serialized documents as JSON response
         return JsonResponse(serialized_documents, safe=False)
       
-      
-
-
-
-
-
-
-
-
-
 
 class CustomUserViewSet(viewsets.ModelViewSet):
     authentication_classes = [TokenAuthentication]
@@ -181,106 +175,49 @@ def project_view(request):
     context={}
     return render (request, 'projects.html', context)
 
-def sites_view(request):
-    context={}
-    return render (request, 'sites.html', context)
+class SiteView(TemplateView):
+    template_name = 'sites.html'
 
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# def user_signup_view(request):
-#     if request.method == 'POST':
-#         first_name = request.data.get('first_name')
-#         email = request.data.get('email')
-#         password = request.data.get('password')
+    def get(self,request):
+        documents_name = [] 
+        files = []
+        sites = Site.objects.all()
+        # Get all documents in db 
+        # Create folders by filtering distinct file types
+        documents = Document.objects.all()
+        folders = documents.values('file_type').distinct()
+        for document in documents:
+            file = {
+                "file_type" : document.file_type,
+                "file": document.file,
+                "file_name": document.file.name.split('/')[1]
+            }
+            files.append(file)
 
-#         # Check if first_name or email already exists
-#         if CustomUser.objects.filter(Q(first_name=first_name) | Q(email=email)).exists():
-#             return Response({'error': 'First name or Email already exists'}, status=status.HTTP_400_BAD_REQUEST)
-#         else:
-#             # Create a new custom user
-#             new_user = CustomUser(first_name=first_name, email=email)
-#             new_user.set_password(password)
-#             new_user.is_active = False
-#             new_user.save()
-#             return Response({'message': 'Sign-Up Successful!!'}, status=status.HTTP_201_CREATED)
-#     else:
-#         return Response({'error': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
-# @api_view(['POST'])
-# @permission_classes([AllowAny])
-# def user_login_view(request):
-#     if request.method == 'POST':
-#         email = request.data.get('email')
-#         password = request.data.get('password')
+        return render(request, self.template_name, {"sites": sites, "folders":folders,"files": files})
 
-#         user = authenticate(request, email=email, password=password)
+    def post(self, request):
+        
+        if 'site_name' in request.POST:
+            site_name = request.POST["site_name"]
+            site = Site(name=site_name)
+            site.save()
+            messages.success(request, 'Site succesfully cleared.')
 
-#         if user and user.is_active:
-#             login(request, user)
-#             token, _ = Token.objects.get_or_create(user=user)
-#             expiration_threshold = timezone.now() + timedelta(days=1)
-#             if token.created < expiration_threshold:
-#                 # Regenerate token if it's about to expire
-#                 token.delete()
-#                 token = Token.objects.create(user=user)
-#                 token.created = timezone.now()
-#                 token.save()
-#             return Response({'token': token.key}, status=status.HTTP_200_OK)  # Return token upon successful login
-#         else:
-#             return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)  # Return unauthorized status if login failed
-#     else:
-#         return Response({'error': 'Method not allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        elif 'file' in request.FILES:
+            import ipdb;ipdb.set_trace()    
+            file_type = request.POST.get("fileType")
+            site_id = request.POST.get("site_id")
+            files = request.FILES.get("file")
 
+        
+            site = get_object_or_404(Site, id=site_id)
+            document = Document(site=site,file=files,file_type=file_type,uploaded_by=request.user)
+            
+            document.save()
+    
+        return redirect('sites')
 
-# class UserProfileView(RetrieveAPIView):
-#     serializer_class = CustomUserSerializer
-#     permission_classes = [IsAuthenticated]
-
-#     def get_object(self):
-#         return self.request.user
-
-# @api_view(['POST'])
-# def upload_document(request):
-#     serializer = DocumentSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-#     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-# @api_view(['GET'])
-# def get_documents(request):
-#     documents = Document.objects.all()
-#     serializer = DocumentSerializer(documents, many=True)
-#     return Response(serializer.data)
-#             return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-
-#     def get(self, request):
-#         # Render the register.html template
-#         context = {}
-#         return render(request, 'register.html', context)
-
-#     @action(detail=False, methods=['POST'],
-#             permission_classes=[permissions.AllowAny],
-#             url_path=r'login',
-#         )
-#     def login(self, request):
-#         fullname = request.data.get('fullname')
-#         password = request.data.get('password')
-
-#         # Check if the fullname and password are valid
-#         user = authenticate(fullname=fullname, password=password)
-
-#         if user is not None:
-#             # Generate token
-#             refresh = RefreshToken.for_user(user)
-#             return Response({'refresh': str(refresh), 'access': str(refresh.access_token)})
-#         else:
-#             return Response({'message': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
-
-# class CustomUserViewSet(viewsets.ModelViewSet):
-#     """A view for the custom user model."""
-#     queryset = CustomUser.objects.all().select_related('user')
-#     serializer_class = CustomUserSerializer
-#     permission_classes=[permissions.IsAuthenticated]
 
 class PostViewSet(viewsets.ModelViewSet):
     """A view for the post objects."""

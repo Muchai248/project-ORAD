@@ -60,6 +60,21 @@
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Font Awesome -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+    rel="stylesheet"
+    />
     <!-- modernizr JS
 		============================================ -->
     <script src="{% static 'js/vendor/modernizr-2.8.3.min.js' %}"></script>
@@ -198,390 +213,274 @@
     text-decoration: underline;
     color: #0056b3;
 }
+.site{
+    float: right;
+    margin: auto 0;
+}
+.site button{
+  color: white;
+}
+
+.addsitepopup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    .addsitepopup-card {
+      width: 300px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+    .container form label{
+      color: #007bff;
+    }
+    .container form label:hover{
+      color: orange;
+    }
+    
+    .container form select option{
+      border: none;
+    }
+  
+  .filespopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .filespopup-card {
+    width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .filesDiv {
+    display: none;
+    background-color: #f0f0f0;
+    position: fixed;
+    top: 25vh;
+    right: 10vh;
+    height: 70vh;
+    z-index: 1;
+    width: 30vw;
+    /* overflow: auto; */
+}
 
 </style>
 </head>
 
 <body>
 <div class="all-content-wrappe">
-        <div class="header-advance-area">
-            <div class="header1-top-area" style=" width: 100%; padding: 10px 0;">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
-                                        <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="home" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">My Files</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Q.C</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Documents</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                  </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Orad</a>
+          <button
+            data-mdb-collapse-init
+            class="navbar-toggler"
+            type="button"
+            data-mdb-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">My Files</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Q.C</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link "
+                  >Documents</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Button to add new site -->
+        <div class="site">
+            <button class="btn btn-outline-primary" onclick="toggleSitePopup()"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Site</button>
+            <div class="addsitepopup" id="addsitepopup">
+                <div class="addsitepopup-card">
+                  <span class="close-btn" onclick="toggleSitePopup()">&times;</span>
+                  <form method="POST" action="{% url 'sites' %}">
+                    {% csrf_token %}
+                    <!-- Site Name -->
+                    
+                    <div data-mdb-input-init class="form-outline mb-4">
+                      <input type="text" id="site_name" name="site_name" class="form-control" />
+                      <label class="form-label" for="name">Site Name</label>
+                    </div>
+                    
+                    <!-- Submit button -->
+                    <button data-mdb-ripple-init type="submit" class="btn btn-primary btn-block">Add Site</button>
+                  </form>
+                </div>
+              </div>
+              
+      </nav>
+      
+    <!-- Modal for displaying site details -->
+  <div class="container row">
+        <h1>Orad Projects</h1>
+        <hr />
+        {% for site in sites %}
+        <div class="card text-bg-light m-4" style="max-width: 18rem;" >
+          <div class="card-header">
+            <div class="site_name row">
+              <div class="id row">
+                <div class="col-md-6 card-body">
+                  <small>
+                    <b>Site ID</b>
+                    <i class="fa fa-id-card m-2" aria-hidden="true"></i>
+                  </small>
+                </div>
+                <div class="col">
+                  <p>{{ site.pk }}</p>   
+                </div>
               </div>
             </div>
-        </div>
-
-
- 
-</div>
-
-    <!-- Modal for displaying site details -->
-  <div class="container">
-        <h1>Site QC Documents</h1>
-        <div id="siteList" class="site-list">
-            <!-- Render site cards dynamically -->
-            <!-- Sample site data and form data -->
-            <div class="site-card">
-                <h3></h3>
-                <div class="upload-container">
-                    <form method="post" enctype="multipart/form-data" action="/upload-file/" class="uploadForm">
-                        <!-- CSRF token -->
-                        <input type="hidden" name="csrfmiddlewaretoken" value="your_csrf_token_here">
-                        <input type="file" name="file" class="fileInput" style="display: none;">
-                        <button class="upload-button" type="submit" data-id="1">
-                            <div id="one"></div>
-                            <span>Upload Document</span>
-                        </button>
-                    </form>
-                    <div class="button-container">
-                        <button class="view-button" data-id="1">View Documents</button>
-                    </div>
-                    <div class="documents"></div>
-                </div>
+              
+              <div class="col-md-6">
+                <small>
+                  <b>Site</b>
+                  <i class="fa fa-building-o m-2" aria-hidden="true"></i>
+                </small>
+              </div>
+              <div class="col">
+                <p style="font-size: 12px;">{{ site }}</p>   
+              </div>
             </div>
-            <!-- End of Sample site data -->
-
-            <!-- You can add more site cards here -->
+          <div class="card-body">
+            <div class="action row">
+              <div class="col-md-6">
+                <b><small style="font-size: 10px; color: #007bff; ">Upload Files</small></b>
+                <form method="post" enctype="multipart/form-data" action="{% url 'sites' %}" class="uploadForm">
+                  {% csrf_token %}
+                  <!-- CSRF token -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="" >
+                        <select  id="fileType" name="fileType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <option class="dropdown-item" value="" disabled selected></option>
+                          <option class="dropdown-item" value="report">Report</option>
+                          <option class="dropdown-item" value="invoice">Invoice</option>
+                          <option class="dropdown-item" value="pdq">PDQ</option>
+                          <option class="dropdown-item" value="image">Images</option>
+                          <option class="dropdown-item" value="others">Others</option>
+                      </select>
+                      </div>
+                      <input type="text" id="site_id" name="site_id" value="{{ site.id }}" hidden/>
+                      <label for="file">File </label>
+                      <input type="file" id="file" name="file" placeholder="none" class="fileInput" style="display: none;">
+                      <button class="btn btn-sm btn-outline-primary"><i class="fa fa-upload" aria-hidden="true" for="file" type="submit"></i></button>
+                    </div>
+                    </div>
+                    
+              </form>
+              </div>
+              <div class="col-md-6 mt-3">
+                <button class="btn btn-secondary" onclick="toggleFilePopup()"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <small>View files</small>
+                </button>
+                <div class="filespopup" id="filespopup">
+                  <div class="filespopup-card">
+                    <span class="close-btn" style="color: red;" onclick="toggleFilePopup()">&times;</span>
+                    
+                    {% for folder in folders %}
+                    <div class="folder" style="border-radius: 0px 0px 25px 25px;">
+                      <div class="folder-icon col-md-4">
+                        <i class="fa fa-folder-open-o" style="color: #007bff; font-size: 30px; transition: background-color 0.3s ease;" aria-hidden="true"></i>
+                      </div>
+                      <div class="folder-name dropdown col-md-8" id="{{ folder.file_type }}">
+                         <!-- Dropdown content (table) -->
+                         <button class="btn btn-secondary" onclick="toggleFiles('{{folder.file_type}}', '{{site.pk}}')" id="{{folder.file_type}}">{{ folder.file_type}}</button>
+                         <div class="filesDiv card" id="filesDiv" style="overflow-y: scroll;" >
+                          <div class="card-header">
+                            <p id="file-header">Reports</p>
+                          </div>
+                          <div class="card-body">
+                            <ul>
+                             {% for file in files %} 
+                             <li style="font-size: 8px;" class="col"> <i class="fa-folder-open-o"></i> {{ file }}</li>
+                             <hr>
+                             {% endfor %}
+                            </ul>
+                            
+                          </div>
+                          </div>
+                          <hr>
+                        </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
         </div>
+        {% endfor %}  
     </div>
 
    
- <!-- Popup card for displaying documents -->
-<div id="popupCard" class="popup-card">
-    <span class="close">&times;</span>
-    <div class="popup-content">
-        <h2></h2>
-        <div id="documentsList"></div>
-    </div>
-</div>
-
-
-{% load static %}
-    <!-- jquery
-		============================================ -->
-    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
-    <!-- bootstrap JS
-		============================================ -->
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <!-- wow JS
-		============================================ -->
-    <script src="{% static 'js/wow.min.js' %}"></script>
-    <!-- price-slider JS
-		============================================ -->
-    <script src="{% static 'js/jquery-price-slider.js' %}"></script>
-    <!-- meanmenu JS
-		============================================ -->
-    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
-    <!-- owl.carousel JS
-		============================================ -->
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- sticky JS
-		============================================ -->
-    <script src="{% static 'js/jquery.sticky.js' %}"></script>
-    <!-- scrollUp JS
-		============================================ -->
-    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
-    <!-- counterup JS
-		============================================ -->
-    <script src="{% static 'js/counterup/jquery.counterup.min.js' %}" ></script>
-    <script src="{% static 'js/counterup/waypoints.min.js' %}"></script>
-    <script src="{% static 'js/counterup/counterup-active.js' %}"></script>
-    <!-- mCustomScrollbar JS
-		============================================ -->
-    <script src="{% static 'js/scrollbar/jquery.mCustomScrollbar.concat.min.js' %}"></script>
-    <script src="{% static 'js/scrollbar/mCustomScrollbar-active.js' %}"></script>
-    <!-- metisMenu JS
-		============================================ -->
-    <script src="{% static 'js/metisMenu/metisMenu.min.js' %}"></script>
-    <script src="{% static 'js/metisMenu/metisMenu-active.js' %}"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="{% static 'js/morrisjs/raphael-min.js' %}"></script>
-    <script src="{% static 'js/morrisjs/morris.js' %}"></script>
-    <script src="{% static 'js/morrisjs/morris-active.js' %}"></script>
-    <!-- morrisjs JS
-		============================================ -->
-    <script src="{% static 'js/sparkline/jquery.sparkline.min.js' %}"></script>
-    <script src="{% static 'js/sparkline/jquery.charts-sparkline.js' %}"></script>
-    <script src="{% static 'js/sparkline/sparkline-active.js' %}"></script>
-    <!-- calendar JS
-		============================================ -->
-    <script src="{% static 'js/calendar/moment.min.js'  %}" ></script>
-    <script src="{%  static 'js/calendar/fullcalendar.min.js'  %}" ></script>
-    <script src="{% static  'js/calendar/fullcalendar-active.js' %}"></script>
-    <!-- plugins JS
-		============================================ -->
-    <script src="{% static  'js/plugins.js' %}"></script>
-    <!-- main JS
-		============================================ -->
-    <script src="{% static    'js/main.js' %}"></script>
-    <script>
-    // Sample site data
-const sites = [
-    { id: 1, name: 'ACK ST James Cathedral,Kiambu', documents: [] },
-    { id: 2, name: 'ACK ST Peter Cathedral,Kenol', documents: [] },
-    { id: 3, name: 'ACK Mariiki', documents: [] },
-    { id: 4, name: 'AIC WOTE,Makueni', documents: [] },
-    { id: 5, name: 'ST Joseph W. Catholic', documents: [] },
-    { id: 6, name: 'Mirema Apartments', documents: [] },
-    { id: 7, name: 'Ruiru Mud Block', documents: [] },
-    { id: 8, name: 'R110 Tatu City Maisonnette', documents: [] },
-    { id: 9, name: 'Kamulu Maisonnette', documents: [] },
-    { id: 10, name: 'Kericho Bungalow', documents: [] }
-];
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Add event listeners to all "View Documents" buttons
-    const viewButtons = document.querySelectorAll('.view-button');
-    viewButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const siteId = this.getAttribute('data-id');
-            fetchDocumentsForSite(siteId);
-        });
-    });
-});
-
-
-// Function to display documents in a popup
-function displayDocumentsPopup(documents) {
-    // Populate the popup window with documents
-    const popup = document.getElementById('popupWindow');
-    const documentsContainer = popup.querySelector('.documents');
-    documentsContainer.innerHTML = ''; // Clear previous content
-
-    // Create HTML elements for each document
-    documents.forEach(document => {
-        const documentItem = document.createElement('div');
-        documentItem.textContent = document.name; // Adjust based on your document structure
-        documentsContainer.appendChild(documentItem);
-    });
-
-    // Show the popup window
-    popup.style.display = 'block';
+ 
+<script>
+function toggleSitePopup() {
+    const popup = document.getElementById('addsitepopup');
+    popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+  }
+function toggleFilePopup() {
+  const popup = document.getElementById('filespopup');
+  popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
 }
+function toggleFiles(file_type, documents, site_id) {
+  const filesDiv = document.getElementById('filesDiv');
+  console.log(documents, site_id)
+  // Get the paragraph element by its id
+  var header = document.getElementById('file-header');
 
-// Function to render the list of sites
-function renderSiteList() {
-    const siteList = document.getElementById('siteList');
-    siteList.innerHTML = ''; // Clear previous content
+  // Set the new value
+  header.textContent = file_type
+  // Toggle the display property of the div
+  filesDiv.style.display = filesDiv.style.display === 'flex' ? 'none' : 'flex';
 
-    sites.forEach(site => {
-        const siteCard = document.createElement('div');
-        siteCard.classList.add('site-card');
-        siteCard.innerHTML = `
-            <h3>${site.name}</h3>
-            <div class="upload-container">
-                <form method="post" enctype="multipart/form-data" action="/upload-file/" class="uploadForm">
-                {% csrf_token %}
-                    <input type="file" name="file" class="fileInput" style="display: none;">
-                    <button class="upload-button" type="button" data-id="${site.id}">
-                        <div id="one"></div>
-                        <span>Upload Document</span>
-                    </button>
-                </form>
-                <div class="button-container">
-                    <button class="view-button" data-id="${site.id}">View Documents</button>
-                    </div>
-                   <div class="documents"></div>
-            </div>
-            <div class="documents"></div>
-        `;
-        siteList.appendChild(siteCard);
+  
 
-          // Add event listeners for view buttons
-    document.querySelectorAll('.view-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const siteId = button.getAttribute('data-id');
-            fetchAndDisplayDocuments(siteId);
-        });
-    });
-
-        // Add event listener to upload button
-        const uploadButton = siteCard.querySelector('.upload-button');
-        uploadButton.addEventListener('click', () => {
-            const fileInput = siteCard.querySelector('.fileInput');
-            fileInput.click();
-        });
-
-        // Add event listener to file input
-        const fileInput = siteCard.querySelector('.fileInput');
-        fileInput.addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const siteId = uploadButton.getAttribute('data-id');
-                uploadDocument(siteId, file);
-            } else {
-                alert('Please select a file to upload.');
-            }
-        });
-    });
 }
-
-// Function to open the upload document modal
-function openUploadModal(siteId) {
-    const modal = document.getElementById('uploadFormModal');
-    const closeButton = modal.querySelector('.close');
-    const uploadForm = modal.querySelector('#uploadForm');
-
-    modal.style.display = 'block';
-
-    // Close the modal when the close button is clicked
-    closeButton.onclick = () => modal.style.display = 'none';
-
-    // Close the modal when the user clicks outside of it
-    window.onclick = (event) => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    };
-
-    // Submit the upload form
-    uploadForm.onsubmit = (event) => {
-        event.preventDefault();
-        const fileInput = uploadForm.querySelector('#document');
-        const file = fileInput.files[0];
-        if (file) {
-            uploadDocument(siteId, file);
-            modal.style.display = 'none';
-            fileInput.value = ''; // Clear the file input
-        } else {
-            alert('Please select a file to upload.');
-        }
-    };
-}
-document.addEventListener('DOMContentLoaded', function () {
-    // Get the upload buttons and file inputs for each site
-    const uploadButtons = document.querySelectorAll('.upload-button');
-    const fileInputs = document.querySelectorAll('.fileInput');
-    
-    // Add click event listener to each upload button
-    uploadButtons.forEach(uploadButton => {
-        uploadButton.addEventListener('click', function() {
-            // Get the corresponding file input for this site
-            const fileInput = this.parentElement.querySelector('.fileInput');
-            // Trigger click event on the file input
-            fileInput.click();
-        });
-    });
-
-    // Add change event listener to each file input to submit the form when a file is selected
-    fileInputs.forEach(fileInput => {
-        fileInput.addEventListener('change', function() {
-            // Get the corresponding form for this site
-            const uploadForm = this.parentElement;
-            // Submit the form when a file is selected
-            uploadForm.submit();
-        });
-    });
-
-    // Fetch documents for display
-    fetchDocuments();
-});
-
-// Function to fetch documents for a specific site
-function fetchDocumentsForSite(siteId) {
-    fetch(`http://localhost:8000/qc-documents/?site_id=${siteId}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Render the documents in the popup card
-            renderDocumentsInPopup(data);
-        })
-        .catch(error => {
-            console.error('Error fetching documents:', error.message);
-        });
-}
-
-// Function to render documents in the popup card
-function renderDocumentsInPopup(documents) {
-    const documentsList = document.getElementById('documentsList');
-    documentsList.innerHTML = ''; // Clear previous content
-
-    documents.forEach(document => {
-        const documentLink = document.createElement('a');
-        documentLink.href = document.document;
-        documentLink.textContent = document.document_name;
-        documentLink.setAttribute('download', '');
-        
-        const br = document.createElement('br');
-
-        documentsList.appendChild(documentLink);
-        documentsList.appendChild(br);
-    });
-
-    // Display the popup card
-    const popupCard = document.getElementById('popupCard');
-    popupCard.style.display = 'block';
-}
-
-// Event listener for closing the popup card
-document.querySelector('.close').addEventListener('click', function() {
-    document.getElementById('popupCard').style.display = 'none';
-});
-
-// Event listener for "View" button/link in each site card
-document.querySelectorAll('.view-button').forEach(button => {
-    button.addEventListener('click', function() {
-        const siteId = this.getAttribute('data-id');
-        fetchDocumentsForSite(siteId);
-    });
-});
-
-// Function to upload the document
-function uploadDocument(siteId, file) {
-    const site = sites.find(site => site.id === siteId);
-    site.documents.push({ name: file.name, url: URL.createObjectURL(file) });
-    renderDocuments(siteId);
-}
-
-// Function to render documents for a site
-function renderDocuments(siteId) {
-    const siteCard = document.querySelector(`.site-card[data-id="${siteId}"]`);
-    const documentsDiv = siteCard.querySelector('.documents');
-    documentsDiv.innerHTML = ''; // Clear previous documents
-
-    const site = sites.find(site => site.id === siteId);
-    site.documents.forEach(document => {
-        const documentLink = document.createElement('a');
-        documentLink.href = document.url;
-        documentLink.textContent = document.name;
-        documentLink.setAttribute('download', '');
-
-        const br = document.createElement('br');
-
-        documentsDiv.appendChild(documentLink);
-        documentsDiv.appendChild(br);
-    });
-}
-
-// Render the site list when the page loads
-window.onload = renderSiteList;
 </script>
 
 </body>

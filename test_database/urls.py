@@ -28,23 +28,7 @@ from database.views import PostViewSet, serve_pdf, upload_file, fetch_documents,
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('database.urls')),
-    # path('users/', views.RegisterAPIView.as_view(), name='users'),
-    path('home', TemplateView.as_view(template_name='main.html'), name='home'),
-    path('login/', views.login, name="login"),
-    path('logout/', views.logout, name="logout"),
-    path('register', views.register_view, name="register"),
-    path('interior.html', views.interior_view, name='interior_html'),
-    path('projects.html', views.project_view, name='projects_html'),
-    path('sites.html', views.sites_view, name='sites_html'),
-    path('serve_pdf/<str:filename>/', serve_pdf, name='serve_pdf'),
-    path('fetch', PostViewSet.as_view, name='fetch'),
-    path('posts/', PostViewSet.as_view({'post': 'create_post'}), name='create_post'),
-    path('upload-file/', upload_file, name='upload_file'),
-    path('fetch-documents/', fetch_documents, name='fetch_documents'),
-    path('qc-documents/', views.qc_document, name='qc_documents'),
-
-
-
+   
 ]
 
 if settings.DEBUG:
